@@ -1,3 +1,4 @@
 {
-	"assets/css/name.scss": "assets/css/{%= name %}.scss"
+	"assets/css/name.scss": "assets/css/{%= name %}.scss",
+	"assets/js/name.js": "assets/js/{%= name %}.js"
 }
