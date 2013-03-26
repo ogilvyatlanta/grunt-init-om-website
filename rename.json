@@ -1,0 +1,3 @@
+{
+	"assets/css/name.scss": "assets/css/{%= name %}.scss"
+}
