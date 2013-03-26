@@ -9,12 +9,32 @@ module.exports = function(grunt) {
 		// parse the package.json to get props
 		pkg: grunt.file.readJSON('package.json'),
 		// create a banner to include ontop of js/css
-		banner: '/* ! <%= pkg.name %> */\n',
+		banner: '/*! \n' +
+			' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.name %> \n' +
+			' */\n',
 		// clean folders
 		clean: {
 			dist: ['.tmp', 'dist'],
             server: '.tmp'
 		},
+		//
+		compass: {
+            options: {
+                sassDir: 'assets/css',
+                cssDir: '.tmp/assets/css',
+                imagesDir: 'assets/img',
+                javascriptsDir: 'assets/js',
+                fontsDir: 'assets/fonts',
+                importPath: 'assets/components',
+                relativeAssets: true
+            },
+            dist: {},
+            server: {
+                options: {
+                    debugInfo: true
+                }
+            }
+        },
 		// concat js files
 		concat: {
 			options: {
@@ -26,6 +46,20 @@ module.exports = function(grunt) {
 				dest: 'dist/assets/js/<%= pkg.name %>.js'
 			}
 		},
+		//
+		cssmin: {
+			options: {
+				banner: '<%= banner %>'
+			},
+            dist: {
+                files: {
+                    'dist/assets/css/<%= pkg.name %>.css': [
+                        '.tmp/assets/css/{,*/}*.css',
+                        'assets/css/{,*/}*.css'
+                    ]
+                }
+            }
+        },
 		// check for js errors
 		jshint: {
             options: {
@@ -60,9 +94,11 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', [
 		'clean:dist',
+		'compass:dist',
 		//'jshint',
 		'concat',
-		'uglify'
+		'uglify',
+		'cssmin'
 	]);
 
 	grunt.registerTask('default', [

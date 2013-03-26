@@ -44,11 +44,13 @@ exports.template = function(grunt, init, done) {
 			node_version: '>= 0.8.0',
 			devDependencies: {
 				'grunt-contrib-clean': '~0.4.0',
-			    'grunt-contrib-concat': '~0.1.2',
-			    'grunt-contrib-jshint': '~0.1.1',
-			    'grunt-contrib-uglify': '~0.1.1',
-			    'grunt-mocha': '~0.2.2',
-			    'matchdep': '~0.1.1'
+				'grunt-contrib-concat': '~0.1.2',
+				'grunt-contrib-compass': '~0.1.2',
+				'grunt-contrib-cssmin': '~0.4.1',
+				'grunt-contrib-jshint': '~0.1.1',
+				'grunt-contrib-uglify': '~0.1.1',
+				'grunt-mocha': '~0.2.2',
+				'matchdep': '~0.1.1'
 			}
 		});
 
