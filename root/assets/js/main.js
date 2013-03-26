@@ -10,7 +10,7 @@ require.config({
     }
 });
 
-require(['site'], function (site) {
+require(['{%= name %}'], function ({%= name %}) {
     'use strict';
-    site.initialize();
+    {%= name %}.initialize();
 });

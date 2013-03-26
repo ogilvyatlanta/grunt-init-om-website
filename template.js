@@ -43,14 +43,18 @@ exports.template = function(grunt, init, done) {
 			version: '0.0.0-ignored',
 			node_version: '>= 0.8.0',
 			devDependencies: {
-				"grunt": "~0.4.1",
+				'grunt': '~0.4.1',
 				'grunt-contrib-clean': '~0.4.0',
 				'grunt-contrib-concat': '~0.1.2',
+				'grunt-contrib-connect': '0.1.2',
 				'grunt-contrib-compass': '~0.1.2',
 				'grunt-contrib-cssmin': '~0.4.1',
 				'grunt-contrib-jshint': '~0.1.1',
+				'grunt-contrib-livereload': '0.1.1',
 				'grunt-contrib-uglify': '~0.1.1',
 				'grunt-mocha': '~0.2.2',
+				'grunt-open': '~0.2.0',
+				'grunt-regarde': '~0.1.1',
 				'matchdep': '~0.1.1'
 			}
 		});

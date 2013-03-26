@@ -22,3 +22,24 @@ grunt-init om-website
 ```
 
 _Note that this template will generate files in the current directory, so be sure to change to a new directory first if you don't want to overwrite existing files._
+
+
+## Usage after install
+
+To run a server:
+
+```
+grunt server
+```
+
+To build the project:
+
+```
+grunt build
+```
+
+To test the project: (coming soon)
+
+```
+grunt test
+```
