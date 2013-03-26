@@ -1,4 +1,4 @@
-grunt-templates
+grunt-init-om-website
 ===============
 
-Templates for use by grunt-init
+Template for use by grunt-init
