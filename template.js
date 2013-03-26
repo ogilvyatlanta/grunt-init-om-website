@@ -43,6 +43,7 @@ exports.template = function(grunt, init, done) {
 			version: '0.0.0-ignored',
 			node_version: '>= 0.8.0',
 			devDependencies: {
+				"grunt": "~0.4.1",
 				'grunt-contrib-clean': '~0.4.0',
 				'grunt-contrib-concat': '~0.1.2',
 				'grunt-contrib-compass': '~0.1.2',
