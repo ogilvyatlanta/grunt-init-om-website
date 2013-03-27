@@ -28,13 +28,25 @@ _Note that this template will generate files in the current directory, so be sur
 
 To run a server:
 
-```
+```bash
+# default
 grunt server
+# run server using dist files
+grunt server:dist
 ```
 
 To build the project:
 
-```
+```bash
+# tasks that <grunt build> runs
+# clean:dist
+# compass
+# requirejs
+# imagemin (coming soon)
+# htmlmin
+# cssmin
+# uglify
+# copy
 grunt build
 ```
 
