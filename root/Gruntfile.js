@@ -13,7 +13,12 @@ module.exports = function(grunt) {
 		//
 		pkg: grunt.file.readJSON('package.json'),
 		//
-		banner: '/*! \n' + ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.name %> \n' + ' */\n',
+		banner: '' +
+			'/*! \n' +
+			' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.name %> \n' +
+			' * Authors: Ogilvy Atlanta, contributors \n' +
+			' */ \n' +
+			'',
 		//
 		clean: {
 			dist: ['.tmp', 'dist'],
