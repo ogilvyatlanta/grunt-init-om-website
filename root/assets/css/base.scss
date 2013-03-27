@@ -9,3 +9,16 @@ body {
 	font-size:100%;
 	font-family:"HelveticaNeue", "Helvetica", sans-serif;
 }
+
+/* only used for testing */
+section.neat {
+  @include outer-container;
+
+  aside {
+    @include span-columns(4);
+  }
+
+  article {
+    @include span-columns(8);
+  }
+}
