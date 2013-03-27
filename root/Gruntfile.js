@@ -10,11 +10,11 @@ module.exports = function(grunt) {
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.initConfig({
-		// parse the package.json to get props
+		//
 		pkg: grunt.file.readJSON('package.json'),
-		// create a banner to include ontop of js/css
+		//
 		banner: '/*! \n' + ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.name %> \n' + ' */\n',
-		// clean folders
+		//
 		clean: {
 			dist: ['.tmp', 'dist'],
 			server: '.tmp'
@@ -37,17 +37,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		// concat js files
-		concat: {
-			options: {
-				banner: '<%= banner %>',
-				stripBanners: true
-			},
-			dist: {
-				src: ['assets/js/{,*}*.js'],
-				dest: 'dist/assets/js/<%= pkg.name %>.js'
-			}
-		},
 		//
 		connect: {
 			options: {
@@ -63,11 +52,37 @@ module.exports = function(grunt) {
 						mountFolder(connect, '')];
 					}
 				}
-			}
+			},
+			test: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            mountFolder(connect, '.tmp'),
+                            mountFolder(connect, 'test')
+                        ];
+                    }
+                }
+            },
+            dist: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            mountFolder(connect, 'dist')
+                        ];
+                    }
+                }
+            }
 		},
-		open: {
-			server: {
-				path: 'http://<%= connect.options.hostname %>:<%= connect.options.port %>'
+		//
+		copy: {
+			dist: {
+				files: [{
+					expand:true,
+					dot:true,
+					cwd: 'assets',
+					dest: 'dist/assets',
+					src: ['**/require.js'],
+				}]
 			}
 		},
 		//
@@ -78,12 +93,22 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'dist/assets/css/<%= pkg.name %>.css': [
-						'.tmp/assets/css/{,*/}*.css',
-						'assets/css/{,*/}*.css']
+					'.tmp/assets/css/<%= pkg.name %>.css']
 				}
 			}
 		},
-		// check for js errors
+		//
+		htmlmin: {
+			dist: {
+				options: {},
+				files: [{
+					expand:true,
+					src: '*.html',
+					dest: 'dist'
+				}]
+			}
+		},
+		//
 		jshint: {
 			options: {
 				jshintrc: '.jshintrc'
@@ -94,16 +119,48 @@ module.exports = function(grunt) {
 				'!assets/js/vendor/*',
 				'test/spec/{,*/}*.js']
 		},
-		// minimize js files
+		//
+		mocha: {
+            all: {
+                options: {
+                    run: true,
+                    urls: ['http://localhost:<%= connect.options.port %>/index.html']
+                }
+            }
+        },
+        //
+        open: {
+			server: {
+				path: 'http://<%= connect.options.hostname %>:<%= connect.options.port %>'
+			}
+		},
+		//
+		requirejs: {
+			compile: {
+				options: {
+					name: '<%= pkg.name %>',
+					baseUrl: 'assets/js',
+					mainConfigFile: 'assets/js/<%= pkg.name %>.js',
+					out: 'dist/assets/js/<%= pkg.name %>.js',
+					useStrict: true,
+					preserveLicenseComments: false,
+					wrap:true,
+					optimize:'none'
+				}
+			}
+		},
+		// don't really need this task as requirejs returns this internally
+		// TODO: figure out a way to include banner with requirejs task and remove this
 		uglify: {
 			options: {
 				banner: '<%= banner %>'
 			},
 			dist: {
-				src: '<%= concat.dist.dest %>',
-				dest: 'dist/assets/js/<%= pkg.name %>-min.js'
+				src: 'dist/assets/js/<%= pkg.name %>.js',
+				dest: 'dist/assets/js/<%= pkg.name %>.js'
 			},
 		},
+		//
 		watch: {
 			compass: {
 				files: ['assets/css/{,*/}*.{scss,sass}'],
@@ -128,7 +185,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('server', function(target) {
 		if (target === 'dist') {
-			return grunt.task.run(['build'], 'open', 'connect:dist:keepalive');
+			return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
 		}
 
 		grunt.task.run([
@@ -137,23 +194,31 @@ module.exports = function(grunt) {
 			'livereload-start',
 			'connect:livereload',
 			'open',
-			'watch']);
+			'watch'
+		]);
 	});
 
 	grunt.registerTask('test', [
-		'clean:server']);
+		'clean:server',
+		'compass',
+        'connect:test',
+        'mocha'
+	]);
 
 	grunt.registerTask('build', [
 		'clean:dist',
 		'compass:dist',
-	//'jshint',
-	'concat',
+		'requirejs',
+		//'imagemin',
+		'htmlmin',
+		'cssmin',
 		'uglify',
-		'cssmin']);
+		'copy'	
+	]);
 
 	grunt.registerTask('default', [
-	//'jshint',
-	'test',
+		'jshint',
+		'test',
 		'build']);
 
 };
