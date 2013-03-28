@@ -1,7 +1,16 @@
+/* this file should contain imports */
+
+/* mixins */
+@import "compass/reset";
+@import "compass/css3";
+
+/* grid */
+@import "bourbon/bourbon";
+@import "neat/neat";
+
+/* other */
 @import "base";
 @import "layout";
 @import "module";
 @import "state";
 @import "theme";
-
-/* do not edit or put code in this file */

@@ -1,5 +1,3 @@
-@import 'mixins';
-
 /**
  *	How to use:
  *
@@ -10,15 +8,15 @@ body {
 	font-family:"HelveticaNeue", "Helvetica", sans-serif;
 }
 
-/* only used for testing */
-section.neat {
-  @include outer-container;
+a {}
+a:active {}
+a:visited {}
+a:hover {}
 
-  aside {
-    @include span-columns(4);
-  }
+ul, ol {}
+li {}
 
-  article {
-    @include span-columns(8);
-  }
-}
+i {}
+b {}
+em {}
+

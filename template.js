@@ -16,8 +16,8 @@ exports.description = 'Create a website scaffold with grunt-init';
 exports.notes = '<insert project notes on setup>';
 
 // Template-specific notes to be displayed after question prompts.
-exports.after = 'You should now install project dependencies with _npm ' +
-  'install_ && _bower install_.';
+exports.after = 'You should now install project dependencies with \n' +
+	'_bundle install_ &&  _npm install_ && _bower install_.';
 
 // Any existing file or directory matching this wildcard will cause a warning.
 exports.warnOn = '*';

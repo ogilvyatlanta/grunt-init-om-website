@@ -2,3 +2,16 @@
  *	How to use:
  *
  */
+
+/* only used for testing */
+section.neat {
+  @include outer-container;
+
+  aside {
+    @include span-columns(4);
+  }
+
+  article {
+    @include span-columns(8);
+  }
+}

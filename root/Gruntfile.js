@@ -33,7 +33,9 @@ module.exports = function(grunt) {
 				javascriptsDir: 'assets/js',
 				fontsDir: 'assets/fonts',
 				importPath: 'assets/components',
-				relativeAssets: true
+				relativeAssets: true,
+				// user must have gem installed for this to work
+				require: ['bourbon-compass', 'neat-compass']
 			},
 			dist: {},
 			server: {
