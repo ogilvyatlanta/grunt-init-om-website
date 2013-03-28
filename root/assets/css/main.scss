@@ -1,18 +1,21 @@
-/* this file should contain imports */
+/**
+ *	main.scss
+ *	
+ *	Description:
+ *	Imports all files.
+ *	
+ */
 
-/* compass */
-@import "compass/reset";
-@import "compass/css3";
+@import "compass/reset";	// main reset
+@import "compass/css3";		// TODO: check to see if we should just use bourbon and remove this
 
-/* grid */
-@import "bourbon/bourbon";
-@import "helpers";
-@import "neat/neat";
+@import "bourbon/bourbon";	// mixins
+@import "helpers";			// site-wide variables and definitions 
+@import "neat/neat";		// grid
 
-/* other */
-@import "base";
-@import "typography";
-@import "layout";
-@import "module";
-@import "state";
-@import "theme";
+@import "base";				// base element rules
+@import "typography";		// fonts and icons
+@import "layout";			// define layout for site
+@import "module";			// re-usable site modules
+@import "state";			// various interactive states (tied to javascript)
+@import "theme";			// page and section specific rules

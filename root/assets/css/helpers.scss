@@ -1,7 +1,38 @@
+/**
+ *	helpers.scss
+ *	
+ *	Description:
+ *	Site-wide development helpers, mixins, and variables.
+ *	
+ */
+
 @import "neat/neat-helpers";
 
-// grid settings
-// $visual-grid: true;
+// - start 
+// - development helpers
+
+$visual-grid: true; // uncomment this line to show an overlay grid.
+
+// - end
+// - development helpers
+
+
+// - start 
+// - mixins
+
+@mixin hide-text {
+    overflow:hidden;
+    text-indent:-9999px;
+    display:block;
+    // direction: ltr; // uncomment this line when dealing with internationalize
+}
+
+// - end
+// - mixins
+
+
+// - start
+// - variables
 
 // $column: 90px;
 // $gutter: 30px;
@@ -11,3 +42,6 @@
 // Define your breakpoints
 // $mobile: new-breakpoint(max-width 480px 4);
 // $tablet: new-breakpoint(max-width 768px 8);
+
+// - end
+// - variables

@@ -1,6 +1,9 @@
 /**
- *	How to use:
- *
+ *	state.scss
+ *	
+ *	Description:
+ *	Various interactive states (tied to javascript).
+ *	
  */
 
 .is-hidden {}
@@ -10,3 +13,7 @@
 .is-pressed {}
 .is-disabled {}
 .is-error {}
+
+.hide-text { 
+	@include hide-text;
+}
